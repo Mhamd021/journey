@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:journey/controllers/journeycontroller.dart';
-import 'package:journey/pages/posts/posts_page.dart';
-
+import 'package:journey/pages/journey/journey_page_body.dart';
 import '../../consts/dimensions.dart';
 
 class Journeypage extends StatefulWidget {
@@ -61,7 +60,7 @@ class _MyWidgetState extends State<Journeypage> {
             ),
             const Expanded(
                 child: SingleChildScrollView(
-              child: PostsPage(),
+              child: JourneysPageBody(),
             ))
           ],
         ),

@@ -14,9 +14,7 @@ class Like {
         likes.add( Likes.fromJson(v));
       });
     }
-  }
-
-  
+  }  
 }
 
 class Likes {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:journey/controllers/commentcontroller.dart';
+import 'package:journey/controllers/journeycontroller.dart';
 import 'package:journey/controllers/postcontroller.dart';
 import 'package:journey/controllers/authcontroller.dart';
 import 'package:journey/helper/initial.dart' as deb;
@@ -24,6 +25,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<Postcontroller>(
       builder: (_) {
+        return GetBuilder<Journeycontroller>(
+      builder: (_) {
         return GetBuilder<Commentcontroller>(
           builder: (_) {
             return GetMaterialApp(
@@ -37,6 +40,9 @@ class MyApp extends StatelessWidget {
         );
       },
     );
+      }
+    );
+    
   }
 }
 

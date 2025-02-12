@@ -1,75 +1,72 @@
 class Journey {
-  late List<Journeys> journeys;
+  int id;
+  String headline;
+  String description;
+  String startDate;
+  String endDate;
+  int maxNumber;
+  int journeyCharge;
+  String createAt;
+  String updatedAt;
+  String? deletedAt;
+  List<Point> points;
+
   Journey({
-    required this.journeys
-     });
+    required this.id,
+    required this.headline,
+    required this.description,
+    required this.startDate,
+    required this.endDate,
+    required this.journeyCharge,
+    required this.maxNumber,
+    required this.createAt,
+    required this.updatedAt,
+    this.deletedAt,
+    required this.points,
+  });
 
-  Journey.fromJson(Map<String, dynamic> json) {
-    if (json['journeys'] != null) {
-      journeys = <Journeys>[];
-      json['journeys'].forEach((v) {
-        journeys.add(Journeys.fromJson(v));
-      });
-    }
+  factory Journey.fromJson(Map<String, dynamic> json) {
+    return Journey(
+      id: json['id'],
+      headline: json['headline'],
+      description: json['description'],
+      startDate: json['start_day'],
+      endDate: json['last_day'],
+      journeyCharge: json['journey_charg'],
+      maxNumber: json['max_number'],
+      createAt: json['created_at'],
+      updatedAt: json['updated_at'],
+      deletedAt: json['deleted_at'],
+      points: (json['points'] as List).map((point) => Point.fromJson(point)).toList(),
+    );
   }
 }
 
-class Journeys {
-  int? id;
-  String? headline;
-  String? startDay;
-  String? lastDay;
-  StartPoint? startPoint;
-  StartPoint? endPoint;
-  String? description;
-  int? journeyCharg;
-  int? maxNumber;
-  String? createdAt;
-  String? updatedAt;
+class Point {
+  int id;
+  int journeyId;
+  int order;
+  String pointDescription;
+  String? pointImage;
+  List<double> coordinates;
 
-  Journeys(
-      {this.id,
-      this.headline,
-      this.startDay,
-      this.lastDay,
-      this.startPoint,
-      this.endPoint,
-      this.description,
-      this.journeyCharg,
-      this.maxNumber,
-      this.createdAt,
-      this.updatedAt});
+  Point({
+    required this.id,
+    required this.journeyId,
+    required this.order,
+    required this.pointDescription,
+    required this.coordinates,
+    this.pointImage,
+  });
 
-  Journeys.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    headline = json['headline'];
-    startDay = json['start_day'];
-    lastDay = json['last_day'];
-    startPoint = json['start_point'] != null
-        ?  StartPoint.fromJson(json['start_point'])
-        : null;
-    endPoint = json['end_point'] != null
-        ?  StartPoint.fromJson(json['end_point'])
-        : null;
-    description = json['description'];
-    journeyCharg = json['journey_charg'];
-    maxNumber = json['max_number'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+  factory Point.fromJson(Map<String, dynamic> json) {
+    return Point(
+      id: json['id'],
+      journeyId: json['journey_id'],
+      order: json['order'],
+      pointDescription: json['point_description'],
+      pointImage: json['image'],
+      coordinates: json['coordinates'].cast<double>(),
+    );
   }
-
- 
-}
-
-class StartPoint {
-  String? type;
-  List<double>? coordinates;
-
-  StartPoint({this.type, this.coordinates});
-
-  StartPoint.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
-    coordinates = json['coordinates'].cast<double>();
-  }
-
 }
